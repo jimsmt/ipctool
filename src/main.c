@@ -122,13 +122,20 @@ void add_yaml_fragment(cJSON *root, const char *key, cJSON *json) {
 static cJSON *build_yaml() {
     if (!getchipname()) return NULL;
 
-    cJSON *root = cJSON_CreateObject();
+    cJSON *root = cJSON_CreateObject();     
+    printf(detect_chip());
     add_yaml_fragment(root, "chip", detect_chip());
+    printf(detect_board());
     add_yaml_fragment(root, "board", detect_board());
+    printf(detect_ethernet());
     add_yaml_fragment(root, "ethernet", detect_ethernet());
+    printf(get_mtd_info());
     add_yaml_fragment(root, "rom", get_mtd_info());
+    printf(detect_ram());
     add_yaml_fragment(root, "ram", detect_ram());
+    printf(detect_firmare());
     add_yaml_fragment(root, "firmware", detect_firmare());
+    printf(detect_sensors());
     add_yaml_fragment(root, "sensors", detect_sensors());
 
     return root;
